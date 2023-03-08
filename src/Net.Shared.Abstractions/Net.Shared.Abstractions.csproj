@@ -5,4 +5,8 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Net.Shared.Models\Net.Shared.Models.csproj" />
+	</ItemGroup>
+
 </Project>
