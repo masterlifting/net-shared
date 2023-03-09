@@ -2,15 +2,15 @@
 
 namespace Net.Shared.Models.Domain;
 
-public sealed record TryResult<T> where T : class
+public sealed record TryResult<T>
 {
-    public T? Data { get; }
+    public T? Result { get; }
     public bool IsSuccess { get; }
     public string[] Errors { get; }
 
     public TryResult(T data)
     {
-        Data = data;
+        Result = data;
         IsSuccess = true;
         Errors = Array.Empty<string>();
     }
