@@ -1,6 +1,6 @@
 ﻿namespace Net.Shared.Models.Settings;
 
-public abstract record ConnectionSettings
+public abstract record Connection
 {
     public string Host { get; set; } = null!;
     public int Port { get; set; }

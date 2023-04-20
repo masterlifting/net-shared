@@ -14,7 +14,7 @@ public sealed record Result<T>
     {
         IsSuccess = isSuccess;
         Data = Array.Empty<T>();
-        Errors = isSuccess 
+        Errors = isSuccess
             ? Array.Empty<string>()
             : new[] { "Result unknown error" };
     }
