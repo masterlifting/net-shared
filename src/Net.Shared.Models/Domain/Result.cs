@@ -19,6 +19,13 @@ public sealed record Result<T>
             : new[] { "Result unknown error" };
     }
 
+    public Result(T data)
+    {
+        IsSuccess = true;
+        Data = new[] { data };
+        Errors = Array.Empty<string>();
+    }
+
     public Result(IEnumerable<T> data)
     {
         IsSuccess = true;
