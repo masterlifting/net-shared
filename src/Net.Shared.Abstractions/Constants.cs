@@ -1,4 +1,4 @@
-﻿namespace AM.Shared.Abstractions;
+﻿namespace Net.Shared.Abstractions;
 
 public static class Constants
 {
