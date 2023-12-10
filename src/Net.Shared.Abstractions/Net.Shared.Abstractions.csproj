@@ -6,7 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Net.Shared.Models\Net.Shared.Models.csproj" />
+	  <Folder Include="Interfaces\" />
 	</ItemGroup>
 
 </Project>

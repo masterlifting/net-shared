@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 
-namespace Net.Shared.Models.Domain;
+namespace Net.Shared.Abstractions.Models.Domain;
 
 public sealed record PaginatedResult<T> where T : new()
 {
