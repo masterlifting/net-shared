@@ -1,6 +1,6 @@
 using System;
 
-namespace Net.Shared.Abstractions.Models.Settings
+namespace Net.Shared.Abstractions.Models.Settings.Connection
 {
     public sealed record HostIdentifierSettings
     {

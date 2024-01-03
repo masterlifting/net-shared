@@ -1,4 +1,4 @@
-namespace Net.Shared.Abstractions.Models.Settings;
+﻿namespace Net.Shared.Abstractions.Models.Settings.Connection;
 
 public abstract record ConnectionsSettings
 {
