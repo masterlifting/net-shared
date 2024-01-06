@@ -6,7 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Net.Shared.Abstractions\Net.Shared.Abstractions.csproj" />
+	  <ProjectReference Include="..\shared-abstractions\Net.Shared.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>
