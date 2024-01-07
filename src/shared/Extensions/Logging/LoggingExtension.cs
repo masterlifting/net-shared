@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Net.Shared.Extensions.Logging;
 
-public static class LoggingExtension
+public static partial class LoggingExtension
 {
     private static readonly string Pattern = "[{time:dd-MM HH:mm:ss}] - {message}";
 
@@ -44,13 +44,4 @@ public static class LoggingExtension
     public static void Info(this ILogger logger, string message) => InfoAction(logger, DateTime.UtcNow, message, null);
     public static void Debug(this ILogger logger, string message) => DebugAction(logger, DateTime.UtcNow, message, null);
     public static void Trace(this ILogger logger, string message) => TraceAction(logger, DateTime.UtcNow, message, null);
-
-    private static class LogEvents
-    {
-        public static readonly EventId Error = new(1000, "error native log");
-        public static readonly EventId Warning = new(1001, "warning native log");
-        public static readonly EventId Information = new(1002, "information native log");
-        public static readonly EventId Debug = new(1003, "debug native log");
-        public static readonly EventId Trace = new(1004, "trace native log");
-    }
 }
