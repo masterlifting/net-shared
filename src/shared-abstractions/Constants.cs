@@ -2,6 +2,7 @@
 {
     public static class Constants
     {
+        public const string UserErrorMessage = "Sorry, Something went wrong. The developer has been notified.";
         public static class Enums
         {
             public enum AssetTypes
