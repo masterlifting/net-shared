@@ -2,6 +2,6 @@
 
 namespace Net.Shared.Abstractions.Models.Exceptions;
 
-public sealed class UserInvalidOperationException(string error) : InvalidOperationException(error)
+public class UserInvalidOperationException(string error) : InvalidOperationException(error)
 {
 }

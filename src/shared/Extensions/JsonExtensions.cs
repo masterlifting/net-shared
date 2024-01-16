@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Net.Shared.Extensions;
+namespace Net.Shared.Extensions.Serialization.Json;
 
 public static class JsonExtensions
 {
@@ -13,19 +14,31 @@ public static class JsonExtensions
         Options = new(JsonSerializerDefaults.Web);
         Options.Converters.Add(new DateOnlyConverter());
         Options.Converters.Add(new TimeOnlyConverter());
+        Options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     }
 
-    public static T DeserializeSync<T>(string data) where T : class
+    public static T FromJson<T>(this string data) where T : class =>
+        JsonSerializer.Deserialize<T>(data, Options) ?? throw new SerializationException($"The data '{data}' is not valid JSON");
+    public static T FromJson<T>(this JsonDocument data) where T : class =>
+        data.Deserialize<T>(Options) ?? throw new SerializationException($"The data '{data}' is not valid JSON");
+    public static bool TryFromJson<T>(this string data, out T? result) where T : class
     {
-        var result = JsonSerializer.Deserialize<T>(data, Options);
-        return result ?? throw new NullReferenceException("Json serialization result is NULL");
+        try
+        {
+            result = JsonSerializer.Deserialize<T>(data, Options);
+            
+            if (result is null)
+                throw new SerializationException($"The data '{data}' is not valid JSON");
+
+            return true;
+        }
+        catch
+        {
+            result = null;
+            return false;
+        }
     }
-    public static T DeserializeSync<T>(this JsonDocument data) where T : class
-    {
-        var result = data.Deserialize<T>(Options);
-        return result ?? throw new NullReferenceException("Json serialization result is NULL");
-    }
-    public static string SerializeSync<T>(this T data) where T : class => data as string ?? JsonSerializer.Serialize(data, Options);
+    public static string ToJson<T>(this T data) where T : class => data as string ?? JsonSerializer.Serialize(data, Options);
 
     public sealed class DateOnlyConverter : JsonConverter<DateOnly>
     {
