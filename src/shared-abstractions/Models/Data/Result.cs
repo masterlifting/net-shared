@@ -11,33 +11,33 @@ public sealed record Result<T>
 
     public Result(T data)
     {
-        Data = new[] { data };
-        Errors = Array.Empty<string>();
+        Data = [data];
+        Errors = [];
     }
 
     public Result(IEnumerable<T> data)
     {
         Data = data.ToArray();
-        Errors = Array.Empty<string>();
+        Errors = [];
     }
 
     public Result(Exception exception)
     {
-        Data = Array.Empty<T>();
+        Data = [];
         Errors = exception.InnerException is null
-            ? new string[] { exception.Message }
-            : new string[] { exception.Message, exception.InnerException.Message };
+            ? [exception.Message]
+            : [exception.Message, exception.InnerException.Message];
     }
 
     public Result(string error)
     {
-        Data = Array.Empty<T>();
-        Errors = new[] { error };
+        Data = [];
+        Errors = [error];
     }
 
     public Result(IEnumerable<string> errors)
     {
-        Data = Array.Empty<T>();
+        Data = [];
         Errors = errors.ToArray();
     }
 
