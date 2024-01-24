@@ -16,6 +16,7 @@ public static partial class LoggingExtension
     private static readonly Action<ILogger, DateTime, string, Exception?> DebugAction = LoggerMessage.Define<DateTime, string>(LogLevel.Debug, LogEvents.Debug, Pattern);
     private static readonly Action<ILogger, DateTime, string, Exception?> TraceAction = LoggerMessage.Define<DateTime, string>(LogLevel.Trace, LogEvents.Trace, Pattern);
 
+    public static void Error(this ILogger logger, string message) => ErrorShortAction(logger, DateTime.UtcNow, message, null);
     public static void ErrorShort(this ILogger logger, Exception exception) => ErrorShortAction(logger, DateTime.UtcNow, exception.Message, null);
     public static void ErrorCompact(this ILogger logger, Exception exception)
     {
