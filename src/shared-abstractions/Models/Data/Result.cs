@@ -47,5 +47,21 @@ public sealed record Result<T>
         Errors = errors.ToArray();
     }
 
+    public Result(IEnumerable<T> data, Exception exception)
+    {
+        Data = data.ToArray();
+        Errors = exception.InnerException is null
+            ? [exception.Message]
+            : [exception.Message, exception.InnerException.Message];
+    }
+
+    public Result(IEnumerable<T> data, IEnumerable<Exception> exceptions)
+    {
+        Data = data.ToArray();
+        Errors = exceptions.Select(x => x.InnerException is null
+            ? x.Message
+            : $"{x.Message} {x.InnerException.Message}").ToArray();
+    }
+
     public string GetError() => string.Join(", ", Errors);
 }
